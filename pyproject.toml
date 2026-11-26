@@ -14,7 +14,6 @@ dependencies = []
 [project.optional-dependencies]
 dev = ["pytest>=8,<10", "ruff>=0.11,<1", "scapy>=2.6,<3", "build>=1,<2"]
 report = ["reportlab>=4,<5"]
-live = ["scapy>=2.6,<3"]
 
 [project.scripts]
 mini-nids = "mininids.cli:main"
@@ -24,7 +23,7 @@ include = ["mininids*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-ra"
+addopts = "-ra --basetemp=outputs/pytest-temp"
 pythonpath = ["."]
 
 [tool.ruff]
