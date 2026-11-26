@@ -1,0 +1,9 @@
+{
+  "provenance": "Instructor slices; fill references using independent manual inspection",
+  "captures": [
+    {"name": "arp", "pcap": "../datasets/ARPspoofing-stu.pcap", "reference": "../datasets/arp.reference.json"},
+    {"name": "scan", "pcap": "../datasets/portScan-stu.pcap", "reference": "../datasets/scan.reference.json"},
+    {"name": "syn", "pcap": "../datasets/DoS-SYN-stu.pcap", "reference": "../datasets/syn.reference.json"},
+    {"name": "dns", "pcap": "../datasets/DNSspoofing-stu.pcap", "reference": "../datasets/dns.reference.json"}
+  ]
+}

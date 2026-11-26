@@ -1,0 +1,477 @@
+{
+  "provenance": "synthetic Scapy scenarios; not course dataset evaluation",
+  "matrix": {
+    "benign": {},
+    "arp": {
+      "ARP-1": 1
+    },
+    "scan": {
+      "SCAN-TCP": 1,
+      "SCAN-1": 1
+    },
+    "syn": {
+      "SYN-1": 1
+    },
+    "dns": {
+      "DNS-2": 1,
+      "DNS-3": 1,
+      "DNS-1": 1
+    }
+  },
+  "evaluation": {
+    "benign": {
+      "margin_seconds": "0",
+      "attacks": {
+        "ARP Spoofing": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "Port Scan": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "SYN Flood": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "DNS Spoofing": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        }
+      },
+      "method": "alert precision; independently labeled incident recall; capture-time delay"
+    },
+    "arp": {
+      "margin_seconds": "0",
+      "attacks": {
+        "ARP Spoofing": {
+          "true_alerts": 1,
+          "false_alerts": 0,
+          "true_positive_intervals": 1,
+          "false_negative_intervals": 0,
+          "reference_intervals": 1,
+          "precision_alert_level": 1.0,
+          "recall_incident_level": 1.0,
+          "first_detection_delay_seconds": {
+            "arp-synthetic-1": "0.200000000"
+          }
+        },
+        "Port Scan": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "SYN Flood": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "DNS Spoofing": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        }
+      },
+      "method": "alert precision; independently labeled incident recall; capture-time delay"
+    },
+    "scan": {
+      "margin_seconds": "0",
+      "attacks": {
+        "ARP Spoofing": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "Port Scan": {
+          "true_alerts": 2,
+          "false_alerts": 0,
+          "true_positive_intervals": 1,
+          "false_negative_intervals": 0,
+          "reference_intervals": 1,
+          "precision_alert_level": 1.0,
+          "recall_incident_level": 1.0,
+          "first_detection_delay_seconds": {
+            "scan-synthetic-1": "1.900000000"
+          }
+        },
+        "SYN Flood": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "DNS Spoofing": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        }
+      },
+      "method": "alert precision; independently labeled incident recall; capture-time delay"
+    },
+    "syn": {
+      "margin_seconds": "0",
+      "attacks": {
+        "ARP Spoofing": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "Port Scan": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "SYN Flood": {
+          "true_alerts": 1,
+          "false_alerts": 0,
+          "true_positive_intervals": 1,
+          "false_negative_intervals": 0,
+          "reference_intervals": 1,
+          "precision_alert_level": 1.0,
+          "recall_incident_level": 1.0,
+          "first_detection_delay_seconds": {
+            "syn-synthetic-1": "1.998000000"
+          }
+        },
+        "DNS Spoofing": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        }
+      },
+      "method": "alert precision; independently labeled incident recall; capture-time delay"
+    },
+    "dns": {
+      "margin_seconds": "0",
+      "attacks": {
+        "ARP Spoofing": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "Port Scan": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "SYN Flood": {
+          "true_alerts": 0,
+          "false_alerts": 0,
+          "true_positive_intervals": 0,
+          "false_negative_intervals": 0,
+          "reference_intervals": 0,
+          "precision_alert_level": null,
+          "recall_incident_level": null,
+          "first_detection_delay_seconds": {}
+        },
+        "DNS Spoofing": {
+          "true_alerts": 3,
+          "false_alerts": 0,
+          "true_positive_intervals": 1,
+          "false_negative_intervals": 0,
+          "reference_intervals": 1,
+          "precision_alert_level": 1.0,
+          "recall_incident_level": 1.0,
+          "first_detection_delay_seconds": {
+            "dns-synthetic-1": "0.010000000"
+          }
+        }
+      },
+      "method": "alert precision; independently labeled incident recall; capture-time delay"
+    }
+  },
+  "scan_threshold_sensitivity": [
+    {
+      "capture": "benign",
+      "scan_ports": 10,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "benign",
+      "scan_ports": 20,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "benign",
+      "scan_ports": 40,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "arp",
+      "scan_ports": 10,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "arp",
+      "scan_ports": 20,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "arp",
+      "scan_ports": 40,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "scan",
+      "scan_ports": 10,
+      "metrics": {
+        "true_alerts": 2,
+        "false_alerts": 0,
+        "true_positive_intervals": 1,
+        "false_negative_intervals": 0,
+        "reference_intervals": 1,
+        "precision_alert_level": 1.0,
+        "recall_incident_level": 1.0,
+        "first_detection_delay_seconds": {
+          "scan-synthetic-1": "0.900000000"
+        }
+      }
+    },
+    {
+      "capture": "scan",
+      "scan_ports": 20,
+      "metrics": {
+        "true_alerts": 2,
+        "false_alerts": 0,
+        "true_positive_intervals": 1,
+        "false_negative_intervals": 0,
+        "reference_intervals": 1,
+        "precision_alert_level": 1.0,
+        "recall_incident_level": 1.0,
+        "first_detection_delay_seconds": {
+          "scan-synthetic-1": "1.900000000"
+        }
+      }
+    },
+    {
+      "capture": "scan",
+      "scan_ports": 40,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 1,
+        "reference_intervals": 1,
+        "precision_alert_level": null,
+        "recall_incident_level": 0.0,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "syn",
+      "scan_ports": 10,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "syn",
+      "scan_ports": 20,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "syn",
+      "scan_ports": 40,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "dns",
+      "scan_ports": 10,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "dns",
+      "scan_ports": 20,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    },
+    {
+      "capture": "dns",
+      "scan_ports": 40,
+      "metrics": {
+        "true_alerts": 0,
+        "false_alerts": 0,
+        "true_positive_intervals": 0,
+        "false_negative_intervals": 0,
+        "reference_intervals": 0,
+        "precision_alert_level": null,
+        "recall_incident_level": null,
+        "first_detection_delay_seconds": {}
+      }
+    }
+  ]
+}
