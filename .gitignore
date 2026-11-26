@@ -1,0 +1,43 @@
+
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# PCAP datasets
+*.pcap
+*.pcapng
+*.cap
+
+# Generated outputs
+outputs/
+logs/
+*.log
+
+# Python build
+build/
+dist/
