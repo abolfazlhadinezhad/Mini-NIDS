@@ -1,3 +1,6 @@
+import hashlib
+import json
+
 from ..bounded import BoundedTable, scope
 
 
@@ -19,7 +22,10 @@ class DNSRule:
         if packet.record.timestamp_ns < tx.timestamp_ns:
             return  # Negative RTT is not evidence of a race.
         prefix = scope(packet)
-        canonical = tuple(sorted((r.name, r.type, r.cls, r.value) for r in dns.answers))
+        canonical = tuple(sorted({(r.name, r.type, r.cls, r.value) for r in dns.answers}))
+        fingerprint = hashlib.sha256(
+            json.dumps([dns.rcode, canonical], separators=(",", ":"), ensure_ascii=True).encode()
+        ).hexdigest()
         evidence = {
             "transaction_id": dns.transaction_id,
             "questions": [q.name for q in dns.questions],
@@ -34,7 +40,7 @@ class DNSRule:
         }
         key = (prefix, ip.dst, ip.src, dns.questions[0].name)
         # DNS-1: application conflict, only exact same outstanding/recent transaction.
-        if tx.answers is not None and tx.answers != canonical and not dns.truncated:
+        if tx.answer_digest is not None and tx.answer_digest != fingerprint and not dns.truncated:
             self.emit(
                 packet,
                 "DNS-1",
@@ -44,6 +50,7 @@ class DNSRule:
                 {
                     **evidence,
                     "previous_answers": list(tx.answers),
+                    "previous_answer_sample_limit": 8,
                     "previous_mac": tx.response_mac,
                     "response_gap_seconds": (packet.record.timestamp_ns - tx.response_ns) / 1e9,
                 },
@@ -80,8 +87,11 @@ class DNSRule:
         elif known is None or known[0] == eth.src:
             self.resolver_macs.put((prefix, ip.src), (eth.src, known[1] + 1 if known else 1), now)
         if not dns.truncated and tx.answers is None:
+            # Retain a fingerprint of the complete response and a bounded sample.
+            # Full record content is streamed separately to dns.csv.
             tx.answers, tx.response_mac, tx.response_ns = (
-                canonical,
+                tuple((name, kind, cls, value[:256]) for name, kind, cls, value in canonical[:8]),
                 eth.src,
                 packet.record.timestamp_ns,
             )
+            tx.answer_digest = fingerprint

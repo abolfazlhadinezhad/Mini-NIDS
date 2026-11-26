@@ -2,6 +2,30 @@ from tests.builders import GATEWAY, ROGUE, arp, ethernet
 from tests.rule_harness import RuleHarness, dns_packet
 
 
+def test_large_answer_state_is_sampled_but_conflict_checks_complete_set():
+    import struct
+
+    from tests.builders import CLIENT, SERVER, dns, ip, ipv4, udp
+
+    h = Harness()
+    query = h.feed(dns_packet(999), 0)
+    transaction = h.dns.table.get(h.dns.key(query), 0)
+    for changed, timestamp in ((False, 0.1), (True, 0.2)):
+        raw = bytearray(dns(txid=999))
+        raw[2:4] = struct.pack("!H", 0x8180)
+        raw[6:8] = struct.pack("!H", 20)
+        for i in range(20):
+            address = "198.51.100.99" if changed and i == 19 else f"203.0.113.{i + 1}"
+            raw += b"\xc0\x0c" + struct.pack("!HHIH", 1, 1, 60, 4) + ip(address)
+        frame = ethernet(
+            ipv4(udp(bytes(raw), sport=53, dport=40000), proto=17, src=SERVER, dst=CLIENT),
+            src=GATEWAY,
+        )
+        h.feed(frame, timestamp)
+    assert len(transaction.answers) == 8
+    assert "DNS-1" in h.ids()  # Changed record was outside retained sample.
+
+
 def Harness(**changes):
     return RuleHarness(("dns",), **changes)
 

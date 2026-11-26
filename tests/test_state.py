@@ -109,6 +109,8 @@ def test_dns_query_key_and_expiry():
         )
     )
     tx = table.observe(query, 0)
+    assert isinstance(table.key(query)[-1], bytes)
+    assert len(table.key(query)[-1]) == 32
     assert table.observe(response, 1) is tx
     assert table.observe(response, 11) is None
 

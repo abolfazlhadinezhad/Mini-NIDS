@@ -1,5 +1,7 @@
 """Independent flow/TCP, ARP and DNS tables."""
 
+import hashlib
+import json
 from collections import Counter
 from dataclasses import dataclass, field
 
@@ -192,6 +194,7 @@ class Transaction:
     answers: tuple | None = None
     response_mac: str | None = None
     response_ns: int | None = None
+    answer_digest: str | None = None
 
 
 class DNSTable:
@@ -212,7 +215,13 @@ class DNSTable:
             server,
             sp,
             dns.transaction_id,
-            tuple((q.name, q.type, q.cls) for q in dns.questions),
+            hashlib.sha256(
+                json.dumps(
+                    [(q.name, q.type, q.cls) for q in dns.questions],
+                    separators=(",", ":"),
+                    ensure_ascii=True,
+                ).encode()
+            ).digest(),
         )
 
     def observe(self, packet, now):
