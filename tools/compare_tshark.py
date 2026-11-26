@@ -163,7 +163,13 @@ def compare(pcap, executable):
             for record in PcapReader(source):
                 row = next(rows, None)
                 if row is None or len(row) != len(FIELDS):
-                    raise ValueError("tshark output ended early or has unexpected field count")
+                    if row is None:
+                        process.wait(timeout=30)
+                        err.seek(0)
+                        detail = err.read().decode(errors="replace").strip()
+                    else:
+                        detail = f"expected {len(FIELDS)} fields, got {len(row)}: {row!r}"
+                    raise ValueError(f"invalid tshark output at packet {record.index}: {detail}")
                 actual = dict(zip(FIELDS, row, strict=True))
                 for field, expected in expected_fields(parse_packet(record)).items():
                     raw = actual[field]
