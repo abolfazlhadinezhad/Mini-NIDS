@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mini-nids"
+version = "0.1.0"
+description = "Streaming, manually parsed academic network intrusion detector"
+requires-python = ">=3.11"
+readme = "README.md"
+authors = [{name = "abolfazlhadinezhad", email = "aboluix@gmail.com"}]
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "ruff>=0.11,<1", "scapy>=2.6,<3", "build>=1,<2"]
+report = ["reportlab>=4,<5"]
+live = ["scapy>=2.6,<3"]
+
+[project.scripts]
+mini-nids = "mininids.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["mininids*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"
+pythonpath = ["."]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
