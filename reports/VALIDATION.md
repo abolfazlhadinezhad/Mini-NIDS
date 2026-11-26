@@ -72,6 +72,11 @@ Python 3.11/3.13; a fifth independently compares all six fixtures with Linux
 tshark. Run 45794577337 at b69b1f9 passed all five jobs. Subsequent commits rerun
 the same workflow; final integration is recorded below.
 
+The workspace-scoped pytest temporary path also exposed a fresh-clone issue:
+pytest creates its base directory but not a missing outputs/ parent. The test
+configuration now creates that parent, verified with a previously absent nested
+base path. This changes test setup, not detector behavior.
+
 The first CI attempt passed all four test/build jobs but failed Linux tshark
 file access. Logs were inspected; passing the already-open capture as standard
 input resolved the restriction. No repository protections were bypassed. Further
