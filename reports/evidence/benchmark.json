@@ -1,0 +1,70 @@
+{
+  "provenance": "synthetic",
+  "capture": "outputs\\benchmark-final-100k\\synthetic-benchmark.pcap",
+  "capture_bytes": 7000024,
+  "packets": 100000,
+  "seconds_with_tracemalloc_and_output_io": 36.108361100003094,
+  "packets_per_second": 2769.4416737178203,
+  "peak_python_allocated_bytes": 30857207,
+  "peak_process_rss_bytes": 105426944,
+  "python": "3.13.13",
+  "platform": "Windows-10-10.0.19045-SP0",
+  "state_tables": {
+    "flows": {
+      "capacity": 20000,
+      "peak_entries": 20000,
+      "removals": {
+        "capacity": 80000,
+        "end_of_capture": 20000
+      }
+    },
+    "arp_mappings": {
+      "capacity": 4096,
+      "peak_entries": 0,
+      "removals": {}
+    },
+    "arp_requests": {
+      "capacity": 4096,
+      "peak_entries": 0,
+      "removals": {}
+    },
+    "dns_transactions": {
+      "capacity": 10000,
+      "peak_entries": 0,
+      "removals": {}
+    },
+    "arp_conflicts": {
+      "capacity": 1024,
+      "peak_entries": 0,
+      "removals": {}
+    },
+    "scan_windows": {
+      "capacity": 1024,
+      "peak_entries": 1024,
+      "removals": {
+        "capacity": 98976,
+        "end_of_capture": 1024
+      }
+    },
+    "syn_windows": {
+      "capacity": 1024,
+      "peak_entries": 1,
+      "removals": {
+        "end_of_capture": 1
+      }
+    },
+    "resolver_macs": {
+      "capacity": 4096,
+      "peak_entries": 0,
+      "removals": {}
+    },
+    "alert_aggregation": {
+      "capacity": 1024,
+      "peak_entries": 1,
+      "removals": {
+        "end_of_capture": 1
+      }
+    }
+  },
+  "measurement_note": "Includes CSV/JSONL output and tracemalloc overhead; RSS is process peak."
+}

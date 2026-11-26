@@ -1,0 +1,67 @@
+{
+  "benign": [],
+  "arp": [
+    {
+      "timestamp": "1700000020.200000000",
+      "rule_id": "ARP-1",
+      "attack": "ARP Spoofing",
+      "src": "02:00:00:00:00:99",
+      "dst": "10.0.0.10",
+      "evidence": "{\"claimant_mac\": \"02:00:00:00:00:99\", \"claimed_ip\": \"10.0.0.1\", \"ethernet_source_matches_claim\": true, \"incumbent_mac\": \"02:00:00:00:00:01\", \"incumbent_observations\": 4, \"threshold\": 3, \"unsolicited_conflicts\": 3, \"window_seconds\": 10.0}"
+    }
+  ],
+  "scan": [
+    {
+      "timestamp": "1700000021.900000000",
+      "rule_id": "SCAN-TCP",
+      "attack": "Port Scan",
+      "src": "10.0.0.10",
+      "dst": "10.0.0.1",
+      "evidence": "{\"classification\": \"indeterminate TCP probes\", \"classifications\": {\"probe\": 1, \"syn_scan\": 19}, \"distinct_ports\": 20, \"ports_sample\": [1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019], \"protocol\": \"TCP\", \"threshold\": 20, \"window_seconds\": 10.0}"
+    },
+    {
+      "timestamp": "1700000021.920000000",
+      "rule_id": "SCAN-1",
+      "attack": "Port Scan",
+      "src": "10.0.0.10",
+      "dst": "10.0.0.1",
+      "evidence": "{\"classification\": \"SYN\", \"classifications\": {\"syn_scan\": 20}, \"distinct_ports\": 20, \"ports_sample\": [1000, 1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010, 1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019], \"protocol\": \"TCP\", \"threshold\": 20, \"window_seconds\": 10.0}"
+    }
+  ],
+  "syn": [
+    {
+      "timestamp": "1700000021.998000000",
+      "rule_id": "SYN-1",
+      "attack": "SYN Flood",
+      "src": "multiple-or-unverified",
+      "dst": "10.0.0.1",
+      "evidence": "{\"completed_handshakes\": 0, \"current_destination_port\": 80, \"current_source\": \"10.1.3.250\", \"incomplete_ratio\": 1.0, \"payload_length\": 0, \"rate_threshold\": 100.0, \"ratio_threshold\": 0.8, \"reset_count\": 0, \"syn_count\": 1000, \"syn_rate\": 100.0, \"synack_count\": 0, \"tcp_flags\": 2, \"window_seconds\": 10.0, \"wire_length\": 54}"
+    }
+  ],
+  "dns": [
+    {
+      "timestamp": "1700000020.010000000",
+      "rule_id": "DNS-2",
+      "attack": "DNS Spoofing",
+      "src": "10.0.0.1",
+      "dst": "10.0.0.10",
+      "evidence": "{\"answers\": [\"198.51.100.99\"], \"arp_mac\": \"02:00:00:00:00:01\", \"arp_observations\": 4, \"client_port\": 45000, \"ip_ttl\": 64, \"questions\": [\"victim.test.\"], \"rcode\": 0, \"resolver_ip\": \"10.0.0.1\", \"response_mac\": \"02:00:00:00:00:99\", \"rtt_seconds\": 0.01, \"transaction_id\": 500, \"ttls\": [0]}"
+    },
+    {
+      "timestamp": "1700000020.010000000",
+      "rule_id": "DNS-3",
+      "attack": "DNS Spoofing",
+      "src": "10.0.0.1",
+      "dst": "10.0.0.10",
+      "evidence": "{\"answers\": [\"198.51.100.99\"], \"client_port\": 45000, \"ip_ttl\": 64, \"learned_observations\": 3, \"learned_resolver_mac\": \"02:00:00:00:00:01\", \"questions\": [\"victim.test.\"], \"rcode\": 0, \"resolver_ip\": \"10.0.0.1\", \"response_mac\": \"02:00:00:00:00:99\", \"rtt_seconds\": 0.01, \"transaction_id\": 500, \"ttls\": [0]}"
+    },
+    {
+      "timestamp": "1700000020.100000000",
+      "rule_id": "DNS-1",
+      "attack": "DNS Spoofing",
+      "src": "10.0.0.1",
+      "dst": "10.0.0.10",
+      "evidence": "{\"answers\": [\"203.0.113.5\"], \"client_port\": 45000, \"ip_ttl\": 64, \"previous_answer_sample_limit\": 8, \"previous_answers\": [[\"victim.test.\", 1, 1, \"198.51.100.99\"]], \"previous_mac\": \"02:00:00:00:00:99\", \"questions\": [\"victim.test.\"], \"rcode\": 0, \"resolver_ip\": \"10.0.0.1\", \"response_gap_seconds\": 0.09, \"response_mac\": \"02:00:00:00:00:01\", \"rtt_seconds\": 0.1, \"transaction_id\": 500, \"ttls\": [0]}"
+    }
+  ]
+}

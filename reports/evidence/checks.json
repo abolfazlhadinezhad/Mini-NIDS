@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-26",
+  "core_source_commit": "8d1cb31f842e37a35488d540bea82c5508f8d443",
+  "tests": 127,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "local_python": "3.13.13",
+  "tshark": "4.6.10",
+  "specification_sha256": "b96b22cb76accca96cf94ff1c02f07b249d8938ecef41d7a87f1b4447a6553fa",
+  "academic_course_evaluation": "pending: four student captures not supplied",
+  "optional_features": "live and Slowloris deferred",
+  "validated_core_ci_run": 45794577337,
+  "validated_core_ci_sha": "b69b1f901b954cb25db59d5fa03e560738d00f8a"
+}

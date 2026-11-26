@@ -23,6 +23,13 @@ Missing course captures must never be replaced by synthetic data in claims about
 academic detection accuracy. Reference labels must be analyst supplied, fixed
 before threshold tuning, and expressed in capture timestamps.
 
+## Execution checkpoint
+
+Steps 1-5: mandatory software implemented, tested, independently compared and
+documented. Real-capture evaluation remains pending because the instructor
+slices/reference labels are unavailable. Step 6: optional work deferred.
+Step 7: final main integration and verification; see reports/VALIDATION.md.
+
 ## Acceptance gates
 
 - Tests and lint pass; CLI runs from a fresh installation; no automatic dissection

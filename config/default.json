@@ -1,0 +1,19 @@
+{
+  "max_flows": 20000,
+  "max_mappings": 4096,
+  "max_queries": 10000,
+  "max_rule_keys": 1024,
+  "max_window_items": 256,
+  "max_packet_bytes": 1048576,
+  "idle_timeout": 60.0,
+  "active_timeout": 300.0,
+  "arp_timeout": 300.0,
+  "dns_timeout": 10.0,
+  "window_seconds": 10.0,
+  "scan_ports": 20,
+  "syn_rate": 100.0,
+  "syn_incomplete_ratio": 0.8,
+  "arp_conflicts": 3,
+  "arp_stable_observations": 2,
+  "alert_cooldown": 10.0
+}
