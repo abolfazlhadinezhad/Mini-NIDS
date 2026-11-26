@@ -41,3 +41,23 @@ but preserve the original commit and file. Generated final report is separate.
 Initial inspection: main and origin/main both 0fe5f48; no divergence or unfinished
 tracked changes. Planning/implementation branch: feature/offline-nids. Final
 commits, merges and remote state are recorded in reports/VALIDATION.md.
+
+## Completed development and integration phase: 2026-11-26
+
+- Branch used: feature/offline-nids; 19 logical commits from e5f4503 through
+  4fab486, each tested/reviewed and successfully pushed after completion.
+- Parser/state/rule checkpoints: 7339a22, 869f7c6, 18bd33f, 83ccea0,
+  cdb6c27, 0a7b55b, 17ccd1b. Pipeline/evaluation/QA: b472a7e, c4618e0,
+  19615d5; subsequent fixes, bounded-DNS hardening and delivery documentation
+  remain separate commits. Full checkpoint table: reports/VALIDATION.md.
+- Feature branch CI run 45801637445 at 4fab486 passed all five jobs.
+- Merge completed without squashing/history rewriting: 1d80b4c, main.
+- Updated main pushed to origin; local and remote both verified as
+  1d80b4c15d253afb79509f01ec1341537c83ffd9 before this closure documentation.
+- Main CI run 45802235847 passed all five jobs on that merge commit.
+- The feature branch is retained and fully integrated; no completed code is
+  isolated from main. This closure documentation is a small direct-main change.
+- Original commit 0fe5f48 and original PDF preserved. No force pushes, resets,
+  unmerged branch deletions or credential/dataset commits.
+- Version 0.1.0 describes validated offline software, with real-course evaluation
+  still pending. No claim of a fully evaluated academic/production release.

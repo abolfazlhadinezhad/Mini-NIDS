@@ -109,11 +109,17 @@ push after each completed checkpoint. Conventional commits before final delivery
 
 ## Final integration
 
-Final documentation, packaging and evidence commits follow these checkpoints.
-The feature branch is to be merged into main preserving its commits; remote
-verification and the final main CI run are appended after execution. Exact
-current main and remote SHAs can be independently checked with git rev-parse
-HEAD and git ls-remote --heads origin main.
+Additional checkpoints: e894c39 (packaging/workspace test artifacts), 350e8cd
+(delivery documentation/PDF/evidence), 4fab486 (fresh-clone test setup). These
+complete 19 tested/reviewed feature-branch commits, all pushed successfully.
+
+Feature CI run 45801637445 at 4fab486 passed all five jobs. Merged into main with
+history preserved at 1d80b4c15d253afb79509f01ec1341537c83ffd9; pushed to origin and
+verified identical via ls-remote. Main CI run 45802235847 passed all five jobs.
+The original baseline remains an ancestor and the feature branch is fully
+integrated. Final closure documentation follows this verified merge on main.
+Exact current main and remote SHAs can be checked with git rev-parse HEAD and
+git ls-remote --heads origin main.
 
 ## Pending external evidence
 

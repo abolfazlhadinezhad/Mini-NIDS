@@ -8,11 +8,10 @@ real-dataset evaluation remains blocked by missing inputs.
   evaluation, report questions, grading and final submission requirements.
 - Existing virtual environment preserved; Python 3.13 and test tools available.
 - Mandatory parsers, bounded state, four attack families, CLI, outputs and
-  evaluation implemented on feature/offline-nids for integration to main.
+  evaluation merged into main at 1d80b4c; origin/main SHA verified equal.
 - 127 tests pass locally on Python 3.13.13; Ruff lint and format checks pass.
-- GitHub Actions passes Windows/Linux Python 3.11/3.13 test/build jobs and
-  independent Linux tshark comparison (run 45794577337 at b69b1f9; final
-  integration status is recorded in reports/VALIDATION.md).
+- GitHub Actions run 45802235847 at main merge 1d80b4c passed all five jobs:
+  Windows/Linux Python 3.11/3.13 tests/builds and independent Linux tshark.
 - Local tshark 4.6.10: 1,270 packets / 27,652 fields; zero mismatches.
 - Five synthetic scenarios: benign has no alerts; four attacks detected;
   threshold sensitivity and detector/capture matrix generated.

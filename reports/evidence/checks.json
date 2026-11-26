@@ -11,5 +11,11 @@
   "academic_course_evaluation": "pending: four student captures not supplied",
   "optional_features": "live and Slowloris deferred",
   "validated_core_ci_run": 45794577337,
-  "validated_core_ci_sha": "b69b1f901b954cb25db59d5fa03e560738d00f8a"
+  "validated_core_ci_sha": "b69b1f901b954cb25db59d5fa03e560738d00f8a",
+  "validated_feature_ci_run": 45801637445,
+  "validated_feature_ci_sha": "4fab486bc85277a45119553c90ecd30934dc2bdc",
+  "main_merge_sha": "1d80b4c15d253afb79509f01ec1341537c83ffd9",
+  "main_merge_ci_run": 45802235847,
+  "main_merge_ci_result": "all five jobs passed",
+  "origin_main_verified_at_merge": true
 }

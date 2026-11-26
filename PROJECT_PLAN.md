@@ -28,7 +28,8 @@ before threshold tuning, and expressed in capture timestamps.
 Steps 1-5: mandatory software implemented, tested, independently compared and
 documented. Real-capture evaluation remains pending because the instructor
 slices/reference labels are unavailable. Step 6: optional work deferred.
-Step 7: final main integration and verification; see reports/VALIDATION.md.
+Step 7: completed main integration, push and independent SHA/CI verification;
+see reports/VALIDATION.md. External academic evidence remains explicitly open.
 
 ## Acceptance gates
 
