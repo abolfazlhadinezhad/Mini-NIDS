@@ -25,3 +25,24 @@ def test_dns_duplicates_new_transactions_and_alternate_resolvers_are_benign():
         h.feed(dns_packet(i, True, address=f"203.0.113.{i + 1}"), i + 0.2)
     h.feed(dns_packet(500, True, ROGUE), 9.5)  # Not correlated.
     assert not h.alerts
+
+
+def test_id_collision_on_another_client_port_is_independent():
+    from tests.builders import CLIENT, SERVER, dns, ipv4, udp
+
+    h = Harness()
+    for i in (1, 2):
+        h.feed(dns_packet(i), i)
+        h.feed(dns_packet(i, True), i + 0.1)
+    h.feed(dns_packet(50), 3)
+    wrong_port = ethernet(
+        ipv4(
+            udp(dns(txid=50, response=True, address="198.51.100.99"), sport=53, dport=40001),
+            proto=17,
+            src=SERVER,
+            dst=CLIENT,
+        ),
+        src=ROGUE,
+    )
+    h.feed(wrong_port, 3.1)
+    assert not h.alerts

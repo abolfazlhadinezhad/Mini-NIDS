@@ -55,6 +55,8 @@ class FlowTable:
         if ip is None or ip.fragmented or packet.malformed:
             return None
         transport = packet.tcp or packet.udp
+        if ip.protocol in (6, 17) and transport is None:
+            return None  # Unknown ports must not become a fabricated port-zero flow.
         sport = transport.src_port if transport else 0
         dport = transport.dst_port if transport else 0
         endpoints = ((ip.src, sport), (ip.dst, dport))

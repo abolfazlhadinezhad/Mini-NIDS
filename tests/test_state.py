@@ -65,6 +65,15 @@ def test_vlan_priority_does_not_split_flow():
     assert len(table.table) == 1
 
 
+def test_truncated_transport_does_not_invent_ports():
+    table = FlowTable(Config())
+    raw = ethernet(ipv4(tcp()))
+    truncated = packet(raw[:40], len(raw))
+    assert truncated.tcp is None
+    assert table.update(truncated, 0) is None
+    assert len(table.table) == 0
+
+
 def test_expiry_and_capacity_export():
     removed = []
     table = BoundedTable(2, 5, 8, lambda value, reason: removed.append((value, reason)))

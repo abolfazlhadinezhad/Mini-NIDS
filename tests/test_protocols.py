@@ -82,6 +82,27 @@ def test_udp_length_validation():
     assert packet(ethernet(ipv4(raw, proto=17))).malformed
 
 
+def test_ipv4_and_tcp_options():
+    segment = bytearray(tcp(payload=b"abc"))
+    segment[12] = 0x60  # 24-byte TCP header.
+    segment[20:20] = b"\x01\x01\0\0"
+    datagram = bytearray(ipv4(bytes(segment)))
+    datagram[0] = 0x46  # 24-byte IPv4 header.
+    datagram[2:4] = struct.pack("!H", len(datagram) + 4)
+    datagram[20:20] = b"\x01\x01\0\0"
+    p = packet(ethernet(bytes(datagram)))
+    assert p.ip.header_length == 24 and p.tcp.header_length == 24
+    assert p.tcp.payload_length == 3
+    assert p.tcp.captured_payload == b"abc"
+
+
+def test_ns_flag_and_ethernet_padding():
+    segment = bytearray(tcp())
+    segment[12] |= 1
+    p = packet(ethernet(ipv4(bytes(segment))) + b"\0" * 20)
+    assert p.tcp.flags == 0x102 and p.tcp.payload_length == 0
+
+
 def test_random_inputs_do_not_crash():
     rng = random.Random(512)
     for _ in range(2000):
