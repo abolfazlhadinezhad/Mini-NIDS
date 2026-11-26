@@ -138,7 +138,7 @@ def compare(pcap, executable):
         str(executable),
         "-n",
         "-r",
-        str(pcap),
+        "-",
         "-o",
         "ip.defragment:FALSE",
         "-o",
@@ -154,9 +154,18 @@ def compare(pcap, executable):
         args.extend(["-e", field])
     checked, mismatches, count = Counter(), [], 0
     # Explicit directory keeps project temporary assets within the workspace.
-    with tempfile.TemporaryFile(dir=Path(pcap).parent) as err, open(pcap, "rb") as source:
+    with (
+        tempfile.TemporaryFile(dir=Path(pcap).parent) as err,
+        open(pcap, "rb") as source,
+        open(pcap, "rb") as reference_input,
+    ):
         process = subprocess.Popen(
-            args, stdout=subprocess.PIPE, stderr=err, text=True, encoding="utf-8"
+            args,
+            stdin=reference_input,
+            stdout=subprocess.PIPE,
+            stderr=err,
+            text=True,
+            encoding="utf-8",
         )
         try:
             rows = csv.reader(process.stdout, delimiter="\t")
