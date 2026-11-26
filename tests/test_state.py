@@ -37,12 +37,32 @@ def test_handshake_checks_sequence_and_direction():
     assert len(table.table) == 1
     assert flow.packets == [4, 3]
     assert flow.retransmissions == 1
+    assert flow.syn_timestamp_ns == 123
+    assert flow.established_timestamp_ns == 123
 
 
 def test_midstream_is_incomplete_and_reset():
     table = FlowTable(Config())
     assert table.update(seg(0x10), 0).flow.state == "INCOMPLETE"
     assert table.update(seg(4, True), 1).flow.state == "RESET"
+
+
+def test_tuple_reuse_exports_previous_connection():
+    removed = []
+    table = FlowTable(Config(), lambda flow, reason: removed.append((flow, reason)))
+    first = table.update(seg(2), 0).flow
+    event = table.update(seg(2, seq=200), 1)
+    assert event.syn_new and event.flow is not first
+    assert removed == [(first, "tuple_reuse")]
+    assert event.flow.packets == [1, 0]
+
+
+def test_vlan_priority_does_not_split_flow():
+    table = FlowTable(Config())
+    for priority in (0, 3, 7):
+        raw = ethernet(ipv4(tcp()), vlan=(priority << 13) | 7)
+        table.update(packet(raw), 0)
+    assert len(table.table) == 1
 
 
 def test_expiry_and_capacity_export():

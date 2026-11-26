@@ -65,4 +65,5 @@ class BoundedTable:
 
 
 def scope(packet):
-    return packet.ethernet.vlan_tags if packet.ethernet else ()
+    # PCP/DEI can vary within one broadcast domain; identity uses VLAN IDs only.
+    return tuple(tag & 0xFFF for tag in packet.ethernet.vlan_tags) if packet.ethernet else ()

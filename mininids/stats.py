@@ -34,6 +34,17 @@ class Statistics:
         )
         self.sources, self.destinations = LimitedCounter(), LimitedCounter()
         self.first_ns = self.last_ns = None
+        for name in (
+            "packets",
+            "malformed_packets",
+            "truncated_packets",
+            "unsupported_packets",
+            "dns_queries",
+            "dns_responses",
+            "ipv4_fragments",
+            "backward_timestamp_packets",
+        ):
+            self.counts[name] = 0
         self.minimum_ns = self.maximum_ns = None
         self.current_second = None
         self.bucket = Counter()

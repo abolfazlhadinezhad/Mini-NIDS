@@ -34,6 +34,14 @@ def test_corrupt_tail_marks_partial_run(tmp_path):
     assert json.loads((out / "stats.json").read_text())["packets"] == 1
 
 
+def test_empty_capture_statistics(tmp_path):
+    source = tmp_path / "empty.pcap"
+    source.write_bytes(pcap([]))
+    out = tmp_path / "empty"
+    assert main(["--pcap", str(source), "--out", str(out)]) == 0
+    assert json.loads((out / "stats.json").read_text())["packets"] == 0
+
+
 def test_first_alert_immediate_and_aggregation_exact(tmp_path):
     outputs = Outputs(tmp_path / "out")
     engine = Engine(outputs, Config(scan_ports=2))

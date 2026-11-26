@@ -24,6 +24,10 @@ class Flow:
     state: str = "INCOMPLETE"
     syn_seq: int | None = None
     synack_seq: int | None = None
+    syn_timestamp_ns: int | None = None
+    synack_timestamp_ns: int | None = None
+    established_timestamp_ns: int | None = None
+    close_timestamp_ns: int | None = None
     initiator: int | None = None
     fin_directions: int = 0
     retransmissions: int = 0
@@ -57,6 +61,16 @@ class FlowTable:
         ordered = tuple(sorted(endpoints))
         key = (scope(packet), ip.protocol, ordered)
         flow = self.table.get(key, now)
+        if (
+            flow is not None
+            and packet.tcp is not None
+            and packet.tcp.flags & SYN
+            and not packet.tcp.flags & ACK
+            and flow.syn_seq is not None
+            and flow.syn_seq != packet.tcp.sequence
+        ):
+            self.table.remove(key, "tuple_reuse")
+            flow = None
         if flow is None:
             flow = self.table.put(
                 key,
@@ -92,6 +106,7 @@ class FlowTable:
             if tcp.flags & RST:
                 event.reset_new = flow.state != "RESET"
                 flow.state = "RESET"
+                flow.close_timestamp_ns = packet.record.timestamp_ns
             elif tcp.flags & SYN and not tcp.flags & ACK:
                 if flow.syn_seq is None or (
                     flow.state in ("FINISHED", "RESET") and flow.syn_seq != tcp.sequence
@@ -100,6 +115,7 @@ class FlowTable:
                     flow.synack_seq = None
                     flow.initiator = direction
                     flow.state = "SYN_SENT"
+                    flow.syn_timestamp_ns = packet.record.timestamp_ns
                     flow.fin_directions = 0
                     event.syn_new = True
             elif tcp.flags & SYN and tcp.flags & ACK:
@@ -110,6 +126,7 @@ class FlowTable:
                 ):
                     flow.synack_seq = tcp.sequence
                     flow.state = "SYN_ACK_RECEIVED"
+                    flow.synack_timestamp_ns = packet.record.timestamp_ns
                     event.synack_new = True
             elif (
                 tcp.flags & ACK
@@ -119,11 +136,13 @@ class FlowTable:
                 and tcp.acknowledgment == (flow.synack_seq + 1) % (1 << 32)
             ):
                 flow.state = "ESTABLISHED"
+                flow.established_timestamp_ns = packet.record.timestamp_ns
                 event.established_new = True
             if tcp.flags & FIN and flow.state != "RESET":
                 flow.fin_directions |= 1 << direction
                 if flow.fin_directions == 3:
                     flow.state = "FINISHED"
+                    flow.close_timestamp_ns = packet.record.timestamp_ns
         return event
 
 
@@ -201,5 +220,7 @@ class DNSTable:
         existing = self.table.get(key, now, touch=False)
         if not packet.dns.response:
             if existing is None or existing.answers is not None:
+                if existing is not None:
+                    self.table.remove(key, "new_query")
                 return self.table.put(key, Transaction(packet.record.timestamp_ns), now)
         return existing

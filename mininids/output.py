@@ -82,6 +82,12 @@ class Outputs:
         row = asdict(flow)
         row["tcp_flags"] = dict(flow.tcp_flags)
         row["export_reason"] = reason
+        row["handshake_complete"] = flow.established_timestamp_ns is not None
+        row["handshake_seconds"] = (
+            (flow.established_timestamp_ns - flow.syn_timestamp_ns) / 1e9
+            if flow.established_timestamp_ns is not None and flow.syn_timestamp_ns is not None
+            else None
+        )
         row["duration_seconds"] = max(0, flow.last_ns - flow.first_ns) / 1e9
         self.flows.write(json.dumps(row, sort_keys=True) + "\n")
 
