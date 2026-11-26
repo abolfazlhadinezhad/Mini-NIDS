@@ -41,3 +41,12 @@ logs/
 # Python build
 build/
 dist/
+
+# Locally supplied academic specification (already present in initial history)
+/Mini-NIDS.pdf
+/datasets/
+/.tools/
+/reports/generated/
+/.coverage
+/htmlcov/
+/coverage.xml
